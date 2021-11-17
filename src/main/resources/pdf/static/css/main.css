@@ -1,0 +1,160 @@
+body {
+    font-family: sans-serif;
+    font-size: 12px;
+}
+
+
+/*
+@page {
+    @bottom-left {
+        content: element(footer);
+        vertical-align: top;
+        padding-top: 10px;
+    }
+    @top-right {
+        content: element(header);
+        vertical-align: bottom;
+        padding-bottom: 10px;
+    }
+    margin-top: 3.3cm;
+    margin-left: 2cm;
+    margin-right: 2cm;
+    margin-bottom: 3.3cm;
+    size: A4 portrait;
+}
+*/
+
+@page {
+    @bottom-right {
+        font-family: sans-serif;
+        font-size: 9pt;
+        content: "Page "counter(page)" of "counter(pages)"";
+    }
+}
+
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    /*width: 690px;*/
+    width: 100%;
+}
+
+.p-top50 {
+    padding-top: 50px;
+}
+
+.p-bot50 {
+    padding-bottom: 50px;
+}
+
+.m-bot10 {
+    margin-bottom: 10px;
+}
+
+.m-bot20 {
+    margin-bottom: 20px;
+}
+
+.m-bot50 {
+    margin-bottom: 50px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.col50 {
+    float: left;
+    width: 50%;
+}
+
+.header {
+    font-weight: bold;
+}
+
+.topLabel {
+    font-size: 14px;
+}
+
+.topLabel,
+.header,
+th {
+    color: #5e5e5e;
+}
+
+.section {
+    background: #f8f8f8;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;
+    /*if you wanna make it compact
+    border-spacing: 0;
+    padding: 0;
+    margin: 0;*/
+}
+
+hr {
+    border: none;
+    height: 1px;
+    /* old IE */
+    color: #a6a6a6;
+    /* Modern Browsers ededed */
+    background-color: #a6a6a6;
+}
+
+div.qr {
+    background-color: white;
+    padding: 10px;
+    width: fit-content;
+}
+
+img.qr {
+    width: 100px;
+    height: 100px;
+}
+
+img.external {
+    width: 15px;
+    height: 15px;
+}
+
+img.logo {
+    height: 90px;
+    width: 150px;
+}
+
+ol {
+    padding-left: 20px;
+}
+
+.page-break {
+    page-break-inside: avoid;
+}
+
+.width80 {
+    width: 80%;
+}
+
+.width60 {
+    width: 60%;
+}
+
+.width40 {
+    width: 40%;
+}
+
+.width20 {
+    width: 20%;
+}

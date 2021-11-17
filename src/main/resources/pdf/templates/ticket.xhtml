@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Ticket</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link type="text/css" th:href="@{../static/css/main.css}" href="../static/css/main.css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="text-center">
+            <img class="logo" src="../static/img/logo.png" alt="logo" />
+            <p th:text="#{ticket.welcome}">Welcome to our grocery store!</p>
+        </div>
+
+        <div class="p-top50 p-bot50">
+            <div class="col50 text-left"><span class="topLabel header">Confirmed: </span><span class="topLabel">02/11/2021</span></div>
+            <div class="col50 text-right"><span class="topLabel">Printing this ticket is required </span><span><img src = "../static/img/print.png" height="15" width="15" alt="print"/></span></div>
+        </div>
+
+        <div class="section m-bot20">
+            <table>
+                <tr class="text-left">
+                    <th>BOOKING DATE</th>
+                    <th>BOOKING NAME</th>
+                    <th>BOOKING EMAIL</th>
+                </tr>
+                <tr>
+                    <td th:text="${booking.bookingDate}">05/11/2021</td>
+                    <td th:text="${booking.bookingName}">John Smith</td>
+                    <td th:text="${booking.bookingEmail}">john.smith@gmail.com</td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <hr/>
+                    </td>
+                </tr>
+                <tr class="text-left">
+                    <th>SUPPLIER</th>
+                    <th>SUPPLIER EMAIL</th>
+                    <th>SUPPLIER PHONE</th>
+                    <th>SUPPLIER REF.</th>
+                </tr>
+                <tr>
+                    <td th:text="${booking.supplierName}">AAT Kings</td>
+                    <td th:text="${booking.supplierEmail}">xyz@aatkings.com</td>
+                    <td th:text="${booking.supplierPhone}">1800 8123</td>
+                    <td th:text="${booking.supplierRef}">99-108630-208681</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section m-bot50">
+            <table>
+                <!-- TICKET SECTION -->
+                <tr th:each="ticket : ${booking.tickets}" class="page-break">
+                    <td>
+                        <table>
+                            <tr class="text-left">
+                                <td class="width80">
+                                    <table>
+                                        <tr class="text-left">
+                                            <th class="width40">PRODUCT</th>
+                                            <th class="width20">TIME</th>
+                                            <th class="width40">PASSENGER</th>
+                                        </tr>
+                                        <tr class="text-left">
+                                            <td th:text="${ticket.productName}">A Town Like Alice Springs Tour</td>
+                                            <td th:text="${ticket.productTime}">1:50pm</td>
+                                            <td th:text="${ticket.passenger}">John Smith</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td class="width20">
+                                    <div class="text-center qr">
+                                        <div>
+                                            <img src="../static/img/qr_code.png" class="qr" alt="qr" />
+                                        </div>
+                                        <div>
+                                            <span th:text="'TICKET ID: ' + ${ticket.id}">TICKET ID: 4025</span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="text-center">
+                                    <span th:text="'LOCAL FEES: ' + ${ticket.localFees}">LOCAL FEES: Levies: 50 AUD</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <hr/>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- END TICKET SECTION -->
+
+                <tr>
+                    <td>
+                        <table>
+                            <tr class="text-left">
+                                <th>PICK-UP</th>
+                                <th>DROP-OFF</th>
+                            </tr>
+                            <tr>
+                                <td th:text="${booking.pickupDropoff.pickUpTime} + '-' + ${booking.pickupDropoff.pickUp}">05:30:00 - Islander Hotel and Resort</td>
+                                <td th:text="${booking.pickupDropoff.dropoffTime} + '-' + ${booking.pickupDropoff.dropOff}">18:00:00 - Astor Metropole Hotel BEST WESTERN</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr class="text-left">
+                                <th colspan="2">PICK-UP NOTES</th>
+                            </tr>
+                            <tr>
+                                <td colspan="2" th:text="${booking.pickupDropoff.pickupNotes}">This is an example note for pick-up</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="text-center m-bot50 page-break">
+            <div>REQUIRED | PRINT REQUIRED</div>
+            <div><a href="">EXTERNAL ITEM <img src="../static/img/external-link.png" class="external" alt="external" /></a></div>
+            <div>Self check-in page. Please visit and complete the mandatory check-in questionnaire before travel.</div>
+        </div>
+
+        <div class="text-left m-bot20 page-break">
+            <span class="header">PASSENGER NOTES</span>
+            <ol>
+                <li th:each="note: ${booking.passengerNotes}" th:text="${note}">Allergic to peanuts</li>
+            </ol>
+        </div>
+
+        <div class="text-left m-bot20 page-break">
+            <div class="header m-bot10">SPECIAL NOTES</div>
+            <div th:text="${booking.specialNotes}">This is a special note</div>
+        </div>
+
+        <div class="text-left m-bot20 page-break">
+            <div class="header m-bot10">CANCELLATION POLICY</div>
+            <div th:text="${booking.cancellationPolicy}">After 2021-10-30T13:50:00Z, the cancellation cost is 100% of the booking value provided by the reservation system. Cancellations are possible with the upstream reservation system past the instant indicated above.</div>
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>
